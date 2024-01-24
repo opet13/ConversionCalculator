@@ -21,11 +21,17 @@
 <script>
 
 	function calculateCurrency() {
-	
-	 var currencyType = document.getElementById('currencyType').value;
-     var amount = parseFloat(document.getElementById('amount').value);
-	
-	switch (currencyType) {
+    var currencyType = document.getElementById('currencyType').value;
+    var amountInput = document.getElementById('amount').value;
+    
+    if (isNaN(amountInput)) {
+        document.getElementById('currencyResult').innerHTML = 'Please enter a valid number for measurement value';
+        return;
+    }
+
+    var amount = parseFloat(amountInput);
+
+    switch (currencyType) {
         case 'myrToRup':
             var result = amount * 17.62;
             document.getElementById('currencyResult').innerHTML = 'Converted Value: ' + result.toFixed(2) + ' INR';
@@ -34,40 +40,46 @@
             var result = amount * 0.057;
             document.getElementById('currencyResult').innerHTML = 'Converted Value: ' + result.toFixed(2) + ' MYR';
             break;
-       
         default:
-            document.getElementById('currencyResult').innerHTML = 'Invalid conversion type';
+            document.getElementById('currencyResult').innerHTML = 'Please enter a valid number for measurement value';
+            break;
     }
-	
 }
 
 function calculateMeasurement() {
     var measurementType = document.getElementById('measurementType').value;
-    var measurementValue = parseFloat(document.getElementById('measurementValue').value);
+    var measurementValueInput = document.getElementById('measurementValue').value;
+
+    if (isNaN(measurementValueInput)) {
+        document.getElementById('measurementResult').innerHTML = 'Please enter a valid number for measurement value';
+        return;
+    }
+
+    var measurementValue = parseFloat(measurementValueInput);
 
     switch (measurementType) {
         case 'meterToFeet':
             var result = measurementValue * 3.28;
             document.getElementById('measurementResult').innerHTML = 'Converted Value: ' + result.toFixed(2) + ' feet';
             break;
-		case 'feetToMeter':
+        case 'feetToMeter':
             var result = measurementValue * 0.3048;
             document.getElementById('measurementResult').innerHTML = 'Converted Value: ' + result.toFixed(2) + ' meter';
             break;
-		
         case 'kilogramToPound':
             var result = measurementValue * 2.20462;
             document.getElementById('measurementResult').innerHTML = 'Converted Value: ' + result.toFixed(2) + ' pounds';
             break;
-       case 'poundToKilogram':
+        case 'poundToKilogram':
             var result = measurementValue * 0.453592;
             document.getElementById('measurementResult').innerHTML = 'Converted Value: ' + result.toFixed(2) + ' kilograms';
             break;
+			
         default:
-            document.getElementById('measurementResult').innerHTML = 'Invalid conversion type';
+            document.getElementById('measurementResult').innerHTML = 'Please enter a valid number for measurement value';
+            break;
     }
 }
-
 </script>
 
 
